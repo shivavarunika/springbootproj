@@ -1,0 +1,44 @@
+-- use carrental;
+-- CREATE TABLE Car (
+--     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+--     make VARCHAR(255) NOT NULL,
+--     model VARCHAR(255) NOT NULL,
+--     year INT ,
+--     status ENUM('Available', 'Rented', 'Maintenance') NOT NULL
+-- );
+-- INSERT INTO Car (make, model, year, status) VALUES
+-- ('Toyota', 'Corolla', 2020, 'Available'),
+-- ('Honda', 'Civic', 2019, 'Rented'),
+-- ('Ford', 'Mustang', 2021, 'Maintenance'),
+-- ('Chevrolet', 'Malibu', 2018, 'Available');
+-- CREATE TABLE Customer (
+--     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL,
+--     email VARCHAR(255) NOT NULL,
+--     phone VARCHAR(255) NOT NULL
+-- );
+-- INSERT INTO Customer (name, email, phone) VALUES
+-- ('John Doe', 'john.doe@example.com', '123-456-7890'),
+-- ('Jane Smith', 'jane.smith@example.com', '098-765-4321'),
+-- ('Alice Johnson', 'alice.johnson@example.com', '555-123-4567'),
+-- ('Bob Brown', 'bob.brown@example.com', '555-987-6543');
+-- CREATE TABLE Rental (
+--     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+--     car_id BIGINT NOT NULL,
+--     customer_id BIGINT NOT NULL,
+--     rentalDate DATE NOT NULL,
+--     returnDate DATE,
+--     status ENUM('Active', 'Completed') NOT NULL,
+--     FOREIGN KEY (car_id) REFERENCES Car(id),
+--     FOREIGN KEY (customer_id) REFERENCES Customer(id)
+-- );
+-- INSERT INTO Rental (car_id, customer_id, rentalDate, returnDate, status) VALUES
+-- (1, 1, '2024-06-01', '2024-06-10', 'Completed'),
+-- (2, 2, '2024-06-05', NULL, 'Active'),
+-- (3, 3, '2024-06-07', '2024-06-12', 'Completed'),
+-- (4, 4, '2024-06-09', NULL, 'Active');
+-- create database car_rental_db;
+commit;
+
+
+
