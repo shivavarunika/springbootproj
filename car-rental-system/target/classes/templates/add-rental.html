@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Rental</title>
+</head>
+<body>
+<h1>Add Rental</h1>
+<form th:action="@{/rentals/add}" th:object="${rental}" method="post">
+    <label>Car:
+        <select th:field="*{car}">
+            <option th:each="car : ${cars}" th:value="${car}" th:text="${car.make} + ' ' + ${car.model}"></option>
+        </select>
+    </label><br/>
+    <label>Customer:
+        <select th:field="*{customer}">
+            <option th:each="customer : ${customers}" th:value="${customer}" th:text="${customer.name}"></option>
+        </select>
+    </label><br/>
+    <label>Rental Date: <input type="date" th:field="*{rentalDate}" /></label><br/>
+    <label>Return Date: <input type="date" th:field="*{returnDate}" /></label><br/>
+    <label>Status: <input type="text" th:field="*{status}" /></label><br/>
+    <button type="submit">Add</button>
+</form>
+</body>
+</html>
