@@ -1,36 +1,117 @@
 package com.example.carrentalsystem.controller;
 
+import com.example.carrentalsystem.Dao.CarDao;
 import com.example.carrentalsystem.model.Car;
-import com.example.carrentalsystem.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.sql.SQLException;
+import java.util.List;
+
+@RestController
 @RequestMapping("/cars")
 public class CarController {
 
+    private final CarDao carDao;
+
     @Autowired
-    private CarRepository carRepository;
-
-    @GetMapping
-    public String getAllCars(Model model) {
-        model.addAttribute("cars", carRepository.findAll());
-        return "car-list";
+    public CarController(CarDao carDao) {
+        this.carDao = carDao;
     }
 
-    @GetMapping("/add")
-    public String showAddCarForm(Model model) {
-        model.addAttribute("car", new Car());
-        return "add-car";
+    // Controller methods for handling car operations
+    @PostMapping("/")
+    public void createCar(@RequestBody Car car) {
+        try {
+            carDao.addCar(car);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception appropriately
+        }
     }
 
-    @PostMapping("/add")
-    public String addCar(Car car) {
-        carRepository.save(car);
-        return "redirect:/cars";
+    @GetMapping("/")
+    public List<Car> getAllCars() {
+        try {
+            return carDao.getAllCars();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; // Handle error response
+        }
+    }
+
+    @GetMapping("/{id}")
+    public Car getCarById(@PathVariable Long id) {
+        try {
+            return carDao.getCarById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; // Handle error response
+        }
+    }
+
+    @PutMapping("/{id}")
+    public void updateCar(@PathVariable Long id, @RequestBody Car car) {
+        try {
+            car.setId(id); // Set ID from path variable
+            carDao.updateCar(car);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception appropriately
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCar(@PathVariable Long id) {
+        try {
+            carDao.deleteCar(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception appropriately
+        }
     }
 }
+
+//package com.example.carrentalsystem.controller;
+//import com.example.carrentalsystem.Dao.CarDao;
+//import com.example.carrentalsystem.model.Car;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.*;
+//
+//import java.sql.SQLException;
+//import java.util.List;
+//
+//@RestController
+//@RequestMapping("/cars")
+//public class CarController {
+//    @Autowired
+//    private CarDao carDao;
+//
+//    @PostMapping
+//    public void addCar(@RequestBody Car car) throws SQLException {
+//        carDao.addCar(car);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public void updateCar(@PathVariable Long id, @RequestBody Car car) throws SQLException {
+//        car.setId(id);
+//        carDao.updateCar(car);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteCar(@PathVariable Long id) throws SQLException {
+//        carDao.deleteCar(id);
+//    }
+//
+//    @GetMapping("/{id}")
+//    public Car getCarById(@PathVariable Long id) throws SQLException {
+//        return carDao.getCarById(id);
+//    }
+//
+//    @GetMapping
+//    public List<Car> getAllCars() throws SQLException {
+//        return carDao.getAllCars();
+//    }
+//}
+//

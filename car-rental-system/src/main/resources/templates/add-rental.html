@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Add Rental</title>
 </head>
 <body>
-<h1>Add Rental</h1>
-<form th:action="@{/rentals/add}" th:object="${rental}" method="post">
-    <label>Car:
-        <select th:field="*{car}">
-            <option th:each="car : ${cars}" th:value="${car}" th:text="${car.make} + ' ' + ${car.model}"></option>
-        </select>
-    </label><br/>
-    <label>Customer:
-        <select th:field="*{customer}">
-            <option th:each="customer : ${customers}" th:value="${customer}" th:text="${customer.name}"></option>
-        </select>
-    </label><br/>
-    <label>Rental Date: <input type="date" th:field="*{rentalDate}" /></label><br/>
-    <label>Return Date: <input type="date" th:field="*{returnDate}" /></label><br/>
-    <label>Status: <input type="text" th:field="*{status}" /></label><br/>
-    <button type="submit">Add</button>
+<h2>Add Rental</h2>
+<form th:action="@{/rentals}" th:object="${rental}" method="post">
+    Car ID: <input type="text" th:field="*{carId}"><br>
+    Customer ID: <input type="text" th:field="*{customerId}"><br>
+    Rental Date: <input type="date" th:field="*{rentalDate}"><br>
+    Return Date: <input type="date" th:field="*{returnDate}"><br>
+    Status: <input type="text" th:field="*{status}"><br>
+    <input type="submit" value="Add Rental">
 </form>
 </body>
 </html>

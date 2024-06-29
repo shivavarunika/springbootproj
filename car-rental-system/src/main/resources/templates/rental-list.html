@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Rental List</title>
 </head>
 <body>
-<h1>Rental List</h1>
-<table>
-    <thead>
+<h2>Rental List</h2>
+<table border="1">
     <tr>
         <th>ID</th>
-        <th>Car</th>
-        <th>Customer</th>
+        <th>Car ID</th>
+        <th>Customer ID</th>
         <th>Rental Date</th>
         <th>Return Date</th>
         <th>Status</th>
     </tr>
-    </thead>
-    <tbody>
     <tr th:each="rental : ${rentals}">
         <td th:text="${rental.id}"></td>
-        <td th:text="${rental.car.make} + ' ' + ${rental.car.model}"></td>
-        <td th:text="${rental.customer.name}"></td>
+        <td th:text="${rental.carId}"></td>
+        <td th:text="${rental.customerId}"></td>
         <td th:text="${rental.rentalDate}"></td>
         <td th:text="${rental.returnDate}"></td>
         <td th:text="${rental.status}"></td>
     </tr>
-    </tbody>
 </table>
-<a th:href="@{/rentals/add}">Add Rental</a>
 </body>
 </html>

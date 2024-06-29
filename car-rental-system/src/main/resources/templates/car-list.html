@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Car List</title>
 </head>
 <body>
-<h1>Car List</h1>
-<table>
+<h2>Car List</h2>
+<table border="1">
     <tr>
         <th>ID</th>
         <th>Make</th>
@@ -14,13 +15,12 @@
         <th>Status</th>
     </tr>
     <tr th:each="car : ${cars}">
-        <td th:text="${car.id}">1</td>
-        <td th:text="${car.make}">Toyota</td>
-        <td th:text="${car.model}">Corolla</td>
-        <td th:text="${car.year}">2020</td>
-        <td th:text="${car.status}">Available</td>
+        <td th:text="${car.id}"></td>
+        <td th:text="${car.make}"></td>
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.year}"></td>
+        <td th:text="${car.status}"></td>
     </tr>
 </table>
-<a th:href="@{/cars/add}">Add Car</a>
 </body>
 </html>

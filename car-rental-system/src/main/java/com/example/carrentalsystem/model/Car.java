@@ -1,18 +1,12 @@
 package com.example.carrentalsystem.model;
-
-import javax.persistence.*;
-
-@Entity
+import com.example.carrentalsystem.model.Car;
 public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String make;
     private String model;
     private Integer year;
     private String status;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
